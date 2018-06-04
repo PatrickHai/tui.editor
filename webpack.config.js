@@ -30,7 +30,7 @@ const isDevServer = process.argv[1].indexOf('webpack-dev-server') >= 0;
 const isProduction = process.argv.indexOf('-p') >= 0;
 const isHMR = process.argv.indexOf('--hot') >= 0 || process.argv.indexOf('--hotOnly') >= 0;
 
-const NAME_SPACE = ['tui', 'Editor'];
+const NAME_SPACE = ['yx', 'Editor'];
 const DIST_DIR_NAME = 'dist';
 const DIST_PATH = path.join(__dirname, DIST_DIR_NAME);
 const DIST_JS_NAME = `tui-editor-[name]${isProduction ? '.min' : ''}.js`;
@@ -82,7 +82,7 @@ const defaultConfigs = Array(isDevServer ? 1 : 4).fill(0).map(() => {
       new SafeUmdPlugin()
     ],
     externals: [{
-      'tui-color-picker': {
+      /*'tui-color-picker': {
         commonjs: 'tui-color-picker',
         commonjs2: 'tui-color-picker',
         amd: 'tui-color-picker',
@@ -141,7 +141,7 @@ const defaultConfigs = Array(isDevServer ? 1 : 4).fill(0).map(() => {
         commonjs2: 'to-mark',
         amd: 'to-mark',
         root: ['toMark']
-      }
+      }*/
     }]
   };
 });
