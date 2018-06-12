@@ -14,8 +14,10 @@ const CleanCSS = require('clean-css');
 const SafeUmdPlugin = require('safe-umd-webpack-plugin');
 
 const ENTRY_MAIN = './src/js/index.js';
+const ENTRY_MAIN_YX = './src/js/indexYx.js';
 const ENTRY_VIEWER = './src/js/indexViewer.js';
 const ENTRY_MAIN_ALL = './src/js/indexAll.js';
+const ENTRY_MAIN_ALL_YX = './src/js/indexAllYx.js';
 const ENTRY_VIEWER_ALL = './src/js/indexViewerAll.js';
 const ENTRY_EXT_CHART = './src/js/extensions/chart/chart.js';
 const ENTRY_EXT_UML = './src/js/extensions/uml.js';
@@ -163,7 +165,8 @@ defaultConfigs[0].plugins.push(new CopyWebpackPlugin([ENTRY_IMAGE_DIR]));
 if (isDevServer) {
   // Serve
   defaultConfigs[0].entry = {
-    'Editor-all': ENTRY_MAIN_ALL
+    'Editor-all': ENTRY_MAIN_ALL,
+    'YXEditor-all': ENTRY_MAIN_ALL_YX
   };
   defaultConfigs[0].output.publicPath = PUBLIC_PATH;
   defaultConfigs[0].output.library = NAME_SPACE;
@@ -188,7 +191,8 @@ if (isDevServer) {
 } else {
   // BuildAll
   defaultConfigs[0].entry = {
-    'Editor-all': ENTRY_MAIN_ALL
+    'Editor-all': ENTRY_MAIN_ALL,
+    'YXEditor-all': ENTRY_MAIN_ALL_YX
   };
   defaultConfigs[0].output.library = NAME_SPACE;
   defaultConfigs[0].output.libraryTarget = 'umd';
@@ -257,7 +261,8 @@ if (isDevServer) {
   // BuildNormal
   defaultConfigs[3].entry = {
     'Editor': ENTRY_MAIN,
-    'Viewer': ENTRY_VIEWER
+    'Viewer': ENTRY_VIEWER,
+    'YXEditor': ENTRY_MAIN_YX
   };
   defaultConfigs[3].output.library = NAME_SPACE;
   defaultConfigs[3].output.libraryTarget = 'umd';
