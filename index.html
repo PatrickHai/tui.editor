@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="dist/tui-editor-contents.css">
     <link rel="stylesheet" href="lib/tui-color-picker/dist/tui-color-picker.css">
     <link rel="stylesheet" href="lib/tui-chart/dist/tui-chart.css">
+    <link rel="shortcut icon" href="#" />
   </head>
   <body>
     <script src="dist/tui-editor-YXEditor-all.js"></script>
 
     <div id="editSection"></div>
     <script class="code-js">
-      var content = [
+/*      var content = [
         '| @cols=2:merged |',
         '| --- | --- |',
         '| table | table |',
@@ -53,16 +54,19 @@
         'y.min: 1',
         'y.max: 40',
         'y.suffix: $'
-      ].join('\n');
-      var editor = new yx.Editor({
+      ].join('\n');*/
+      var EN = new yx.Editor({
         el: document.querySelector('#editSection'),
         previewStyle: 'vertical',
         height: '1000px',
         initialEditType: 'markdown',
         useCommandShortcut: true,
-        initialValue: content,
+        initialValue: '',
         exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter']
       });
+      if(window.evernoteClient){
+        evernoteClient.postNotification('ready', JSON.stringify({version: "1.0"}));
+      }
     </script>
   </body>
 </html>
