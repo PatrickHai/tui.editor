@@ -3,65 +3,27 @@
   <head lang="en">
     <meta charset="UTF-8">
     <title>YXBJ markdown page</title>
-    <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="lib/highlightjs/styles/github.css">
-    <link rel="stylesheet" href="dist/tui-editor.css">
-    <link rel="stylesheet" href="dist/tui-editor-contents.css">
-    <link rel="stylesheet" href="lib/tui-color-picker/dist/tui-color-picker.css">
-    <link rel="stylesheet" href="lib/tui-chart/dist/tui-chart.css">
+    <link rel="stylesheet" href="dist/codemirror.min.css">
+    <link rel="stylesheet" href="dist/github.min.css">
+    <link rel="stylesheet" href="dist/tui-editor.min.css">
+    <link rel="stylesheet" href="dist/tui-editor-contents.min.css">
+    <link rel="stylesheet" href="dist/colorpicker.min.css">
+    <link rel="stylesheet" href="dist/chart.min.css">
     <link rel="shortcut icon" href="#" />
   </head>
   <body>
     <script src="dist/tui-editor-YXEditor-all.js"></script>
+    <script src="juice.js"></script>
 
     <div id="editSection"></div>
     <script class="code-js">
-/*      var content = [
-        '| @cols=2:merged |',
-        '| --- | --- |',
-        '| table | table |',
-        '```uml',
-        'partition Conductor {',
-        '  (*) --> "Climbs on Platform"',
-        '  --> === S1 ===',
-        '  --> Bows',
-        '}',
-        '',
-        'partition Audience #LightSkyBlue {',
-        '  === S1 === --> Applauds',
-        '}',
-        '',
-        'partition Conductor {',
-        '  Bows --> === S2 ===',
-        '  --> WavesArmes',
-        '  Applauds --> === S2 ===',
-        '}',
-        '',
-        'partition Orchestra #CCCCEE {',
-        '  WavesArmes --> Introduction',
-        '  --> "Play music"',
-        '}',
-        '```',
-        '```chart',
-        ',category1,category2',
-        'Jan,21,23',
-        'Feb,31,17',
-        '',
-        'type: column',
-        'title: Monthly Revenue',
-        'x.title: Amount',
-        'y.title: Month',
-        'y.min: 1',
-        'y.max: 40',
-        'y.suffix: $'
-      ].join('\n');*/
       var EN = new yx.Editor({
         el: document.querySelector('#editSection'),
         previewStyle: 'vertical',
         height: '1000px',
         initialEditType: 'markdown',
         useCommandShortcut: true,
-        initialValue: '',
+        initialValue: '* [ ] check',
         exts: ['scrollSync', 'colorSyntax', 'uml', 'chart', 'mark', 'table', 'taskCounter']
       });
       if(window.evernoteClient){

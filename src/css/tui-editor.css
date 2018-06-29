@@ -753,7 +753,7 @@
 }
 
 .tui-toolbar-icons {
-    background: url('tui-editor.png');
+    background: url("tui-editor.png");
     background-size: 218px 188px;
     display: inline-block;
 }
@@ -766,7 +766,7 @@ only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
   .tui-toolbar-icons {
-    background: url('tui-editor-2x.png');
+    background: url("tui-editor-2x.png");
     background-size: 218px 188px;
     display: inline-block;
   }
@@ -1001,24 +1001,24 @@ only screen and (                min-resolution: 2dppx) {
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-preview::after {
-    content: 'Preview off';
+    content: "Preview off";
     color: #777;
     margin-right: 22px;
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-preview.active::after {
-    content: 'Preview on';
+    content: "Preview on";
     color: #4b96e6;
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-scroll::after {
-    content: 'Scroll off';
+    content: "Scroll off";
     color: #777;
     margin-right: 16px;
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-scroll.active::after {
-    content: 'Scroll on';
+    content: "Scroll on";
     color: #4b96e6;
 }
 

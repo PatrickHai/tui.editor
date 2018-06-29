@@ -3,6 +3,7 @@
  */
 import ToastUIEditor from './editor';
 import enml from 'enml-js';
+import {htmltoenml, getMDFromEnml} from './htmltoenml';
 
 class YXEditor {
   constructor(options) {
@@ -24,7 +25,8 @@ class YXEditor {
 
   setup(content) {
     console.log(JSON.parse(content));
-    let plaintext = enml.PlainTextOfENML(JSON.parse(content).rte.enml);
+    // let plaintext = enml.PlainTextOfENML(JSON.parse(content).rte.enml);
+    let plaintext = getMDFromEnml(JSON.parse(content).rte.enml);
     this.editor.setMarkdown(plaintext);
     console.log('setup');
 
@@ -68,10 +70,12 @@ class YXEditor {
     let data = {};
     let result = '';
     data.success = true;
-    data.value = enml.ENMLOfPlainText(this.editor.getValue());
+    // data.value = enml.ENMLOfPlainText(this.editor.getValue());
+    data.value = htmltoenml(this.editor.preview.getHTML(), this.editor.getValue());
+    console.log(data.value);
     // let encodedMd = encodeURIComponent(this.editor.getValue());
     // data.value = this.getHtml() + '<center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">'+encodedMd+'</center>'
-    
+
     if (command === 'focus' || command === 'content') {
       result = JSON.stringify(data);
     } else if(command === 'rte.changes'){
@@ -105,5 +109,11 @@ class YXEditor {
       window.evernoteClient.handleNotificationInfo(name, info);
     }
   }
+
+  test() {
+    let plaintext = getMDFromEnml(this.editor.preview.getHTML(), this.editor.getValue());
+    console.log(plaintext);
+  }
+
 }
 module.exports = YXEditor;

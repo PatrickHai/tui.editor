@@ -12,7 +12,7 @@ function sendHostName() {
   }
   hostnameSent = true;
 
-  const trackingID = 'UA-115377265-9';
+  const trackingID = '';
   const applicationID = 'editor';
   const hitType = 'event';
   const {hostname} = location;

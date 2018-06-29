@@ -26,6 +26,10 @@ const ENTRY_EXT_SCROLL_SYNC = './src/js/extensions/scrollSync/scrollSync.js';
 const ENTRY_EXT_TABLE = './src/js/extensions/table/table.js';
 const ENTRY_EDITOR_CSS = './src/css/tui-editor.css';
 const ENTRY_CONTENT_CSS = './src/css/tui-editor-contents.css';
+const ENTRY_CODEMIRROR_CSS = './src/css/codemirror.css';
+const ENTRY_GITHUB_CSS = './src/css/github.css';
+const ENTRY_COLORPICKER_CSS = './src/css/tui-color-picker.css';
+const ENTRY_CHART_CSS = './src/css/tui-chart.css';
 const ENTRY_IMAGE_DIR = './src/image';
 
 const isDevServer = process.argv[1].indexOf('webpack-dev-server') >= 0;
@@ -157,7 +161,24 @@ defaultConfigs[0].plugins.push(new CopyWebpackPlugin([{
   from: ENTRY_CONTENT_CSS,
   transform: content => isProduction ? new CleanCSS({compatibility: '*'}).minify(content).styles : content,
   to: `tui-editor-contents${isProduction ? '.min' : ''}.css`
+}, {
+  from: ENTRY_CODEMIRROR_CSS,
+  transform: content => isProduction ? new CleanCSS({compatibility: '*'}).minify(content).styles : content,
+  to: `codemirror${isProduction ? '.min' : ''}.css`
+}, {
+  from: ENTRY_GITHUB_CSS,
+  transform: content => isProduction ? new CleanCSS({compatibility: '*'}).minify(content).styles : content,
+  to: `github${isProduction ? '.min' : ''}.css`
+}, {
+  from: ENTRY_COLORPICKER_CSS,
+  transform: content => isProduction ? new CleanCSS({compatibility: '*'}).minify(content).styles : content,
+  to: `colorpicker${isProduction ? '.min' : ''}.css`
+}, {
+  from: ENTRY_CHART_CSS,
+  transform: content => isProduction ? new CleanCSS({compatibility: '*'}).minify(content).styles : content,
+  to: `chart${isProduction ? '.min' : ''}.css`
 }]));
+
 
 // Image
 defaultConfigs[0].plugins.push(new CopyWebpackPlugin([ENTRY_IMAGE_DIR]));
