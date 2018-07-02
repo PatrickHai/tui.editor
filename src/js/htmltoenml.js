@@ -4,7 +4,7 @@ import cssFilesText from './cssFiles';
 
 const permittedElements = ['a', 'abbr', 'acronym', 'address', 'area', 'b', 'bdo', 'big', 'blockquote', 'br', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'font', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'ins', 'kbd', 'li', 'map', 'ol', 'p', 'pre', 'q', 's', 'samp', 'small', 'span', 'strike', 'strong', 'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'title', 'tr', 'tt', 'u', 'ul', 'var', 'xmp'];
 const prohibitedElements = ['applet', 'base', 'basefont', 'bgsound', 'blink', 'body', 'button', 'dir', 'embed', 'fieldset', 'form', 'frame', 'frameset', 'head', 'html', 'iframe', 'ilayer', 'input', 'isindex', 'label', 'layer', 'legend', 'link', 'marquee', 'menu', 'meta', 'noframes', 'noscript', 'object', 'optgroup', 'option', 'param', 'plaintext', 'script', 'select', 'style', 'textarea', 'xml'];
-const disallowedAttributes = ['id', 'class', 'onclick', 'ondblclick', 'onmousedown', 'onmousemove', 'onmouseover', 'onmouseout', 'onmouseup', 'onkeydown', 'onkeypress', 'onkeyup', 'onabort', 'onerror', 'onload', 'onresize', 'onscroll', 'onunload', 'onblur', 'onchange', 'onfocus', 'onreset', 'onselect', 'onsubmit', 'accesskey', 'data', 'dynsrc', 'tabindex', 'data-te-task'];
+const disallowedAttributes = ['id', 'class', 'onclick', 'ondblclick', 'onmousedown', 'onmousemove', 'onmouseover', 'onmouseout', 'onmouseup', 'onkeydown', 'onkeypress', 'onkeyup', 'onabort', 'onerror', 'onload', 'onresize', 'onscroll', 'onunload', 'onblur', 'onchange', 'onfocus', 'onreset', 'onselect', 'onsubmit', 'accesskey', 'data', 'dynsrc', 'tabindex', 'data-te-task', 'data-language', 'data-backticks'];
 const selfClosingTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'];
 
 function test(html) {
@@ -34,6 +34,19 @@ function filter(html) {
       regElement = new RegExp("<"+element+".*?>.*?<\\/"+element+">", 'ig');
     }
     html = html.replace(regElement, '');
+  }
+  //convert br to self-closing tag
+  html = html.replace(new RegExp("<br.*?>", 'ig'), "<br/>");
+  //convert hr to self-closing tag
+  html = html.replace(/(<hr\s*.*?)(>)/ig, '$1/>');
+  //convert img to self-closing tag
+  html = html.replace(/(<img\s*.*?)(>)/ig, '$1/>');
+  let svgs = html.match(/\s*<svg\s*.*?svg>/ig);
+  if(svgs){
+  	for(let svg of svgs){
+  		let svgImage = "<img src='data:image/svg+xml;charset=utf8,"+encodeURIComponent(svg)+"'/>";
+  		html = html.replace(svg, svgImage);
+  	}
   }
   return html;
 }

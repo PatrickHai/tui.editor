@@ -18,7 +18,6 @@ class YXEditor {
       }, 0);
     });
     this.editor.on('contentChangedFromMarkdown', () => {
-      console.log('content changes');
       this.notify('contentChanged', { module: 'content' });
     });
   }

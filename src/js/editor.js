@@ -154,7 +154,7 @@ class ToastUIEditor {
         'code',
         'codeblock'
       ],
-      hideModeSwitch: false
+      hideModeSwitch: true
     }, options);
 
     this.eventManager = new EventManager();
